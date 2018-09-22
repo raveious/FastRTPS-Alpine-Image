@@ -1,13 +1,12 @@
 FROM alpine as builder
 
 # Install build dependences
-RUN apk add --no-cache --update git cmake make build-base gcc g++ perl linux-headers openssl openssl-dev openjdk8 gradle
+RUN apk add --no-cache --update git cmake make build-base gcc g++ linux-headers openssl openssl-dev openjdk8 gradle
 
 # Install FastRTPS
 RUN git clone --depth 1 https://github.com/eProsima/Fast-RTPS.git
 WORKDIR Fast-RTPS/build
-RUN cmake -DTHIRDPARTY=ON -DSECURITY=ON -DBUILD_JAVA=ON ..
-RUN make && make install
+RUN cmake -DTHIRDPARTY=ON -DSECURITY=ON -DBUILD_JAVA=ON .. && make && make install
 
 FROM alpine:3.8
 
