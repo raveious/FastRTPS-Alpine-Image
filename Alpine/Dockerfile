@@ -4,7 +4,7 @@ FROM alpine as builder
 RUN apk add --no-cache --update git cmake make build-base gcc g++ linux-headers openssl openssl-dev openjdk8 gradle
 
 # Build FastRTPS
-RUN git clone --depth 1 --recursive https://github.com/eProsima/Fast-RTPS.git /Fast-RTPS
+RUN git clone --depth 1 --single-branch --branch v1.7.2 --recursive https://github.com/eProsima/Fast-RTPS.git /Fast-RTPS
 WORKDIR /Fast-RTPS/build
 RUN cmake -DTHIRDPARTY=ON -DSECURITY=ON -DBUILD_JAVA=ON -DCOMPILE_EXAMPLES=ON .. && make && make install
 
