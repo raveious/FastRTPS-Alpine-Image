@@ -1,4 +1,4 @@
-FROM alpine as builder
+FROM alpine:3.9 as builder
 
 # Install build dependences
 RUN apk add --no-cache --update git cmake make build-base gcc g++ linux-headers openssl openssl-dev openjdk8 gradle
@@ -13,7 +13,7 @@ RUN git clone --depth 1 --recursive https://github.com/eProsima/micro-XRCE-DDS-g
 WORKDIR /micro-XRCE-DDS-gen
 RUN gradle build
 
-FROM alpine:3.8
+FROM alpine:3.9
 
 RUN apk add --no-cache --update openssl openjdk8
 
