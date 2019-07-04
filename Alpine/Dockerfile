@@ -4,7 +4,7 @@ FROM alpine:3.9 as builder
 RUN apk add --no-cache --update git cmake make build-base gcc g++ linux-headers openssl openssl-dev openjdk8 gradle
 
 # Build FastRTPS
-RUN git clone --depth 1 --single-branch --branch v1.7.2 --recursive https://github.com/eProsima/Fast-RTPS.git /Fast-RTPS
+RUN git clone --depth 1 --single-branch --branch v1.8.1 --recursive https://github.com/eProsima/Fast-RTPS.git /Fast-RTPS
 WORKDIR /Fast-RTPS/build
 RUN cmake -DTHIRDPARTY=ON -DSECURITY=ON -DBUILD_JAVA=ON -DCOMPILE_EXAMPLES=ON .. && make && make install
 
@@ -14,7 +14,7 @@ WORKDIR /micro-XRCE-DDS-gen
 RUN gradle build
 
 # Build Micro XRCE-DDS Client
-RUN git clone --depth 1 --single-branch --branch v1.0.1 https://github.com/eProsima/micro-XRCE-DDS-client.git /micro-XRCE-DDS-client
+RUN git clone --depth 1 --single-branch --branch v1.1.1 https://github.com/eProsima/micro-XRCE-DDS-client.git /micro-XRCE-DDS-client
 WORKDIR /micro-XRCE-DDS-client/build
 # Building using the default options
 RUN cmake -DTHIRDPARTY=ON -DEPROSIMA_BUILD_EXAMPLES=ON .. && make && make install
