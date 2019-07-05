@@ -17,7 +17,7 @@ RUN gradle build
 RUN git clone --depth 1 --single-branch --branch v1.1.1 https://github.com/eProsima/micro-XRCE-DDS-client.git /micro-XRCE-DDS-client
 WORKDIR /micro-XRCE-DDS-client/build
 # Building using the default options
-RUN cmake -DTHIRDPARTY=ON -DEPROSIMA_BUILD_EXAMPLES=ON .. && make && make install
+RUN cmake -DTHIRDPARTY=ON -DUCLIENT_BUILD_EXAMPLES=ON .. && make && make install
 
 # -----------------------------
 
